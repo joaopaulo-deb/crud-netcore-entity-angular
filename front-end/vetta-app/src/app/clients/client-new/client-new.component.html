@@ -1,0 +1,106 @@
+<div class ="card rounded shadow-sm">
+<form [formGroup]="form">
+  <div class="p-3">
+    <div class="form-row p-1 mb-3">
+      <label>Client</label>
+
+		<div class=" ml-4">
+      <input type="radio" id="huey" name="drone" value="huey" checked>
+      <label class="">Legal Person</label>
+    </div>
+    <div class="ml-4">
+      <input type="radio" id="huey" name="drone" value="huey">
+      <label class="">Physical Person</label>
+		</div>
+
+	</div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Name / Fantasy Name</label>
+        <input type="text" class="form-control"
+        [ngClass]="{'is-invalid' : form.get('fantasyName').errors && form.get('fantasyName').touched }"
+        formControlName="fantasyName" ngModel maxlength="200">
+        <div *ngIf="form.get('fantasyName').hasError('required')" class="invalid-feedback">
+          Required
+        </div>
+        <div *ngIf="form.get('fantasyName').hasError('maxlength')" class="invalid-feedback">
+          Maximum Characters 100
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>Email</label>
+        <input type="text" class="form-control"
+        [ngClass]="{'is-invalid' : form.get('email').errors && form.get('email').touched }"
+        formControlName="email">
+        <div *ngIf="form.get('email').hasError('required')" class="invalid-feedback">Required</div>
+        <div *ngIf="form.get('email').hasError('email')" class="invalid-feedback">
+          Email type
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>CPF / CNPJ</label>
+        <input type="text" class="form-control"
+        [ngClass]="{'is-invalid' : form.get('cnpj').errors && form.get('cnpj').touched }"
+         formControlName="cnpj">
+        <div *ngIf="form.get('cnpj').hasError('required')" class="invalid-feedback">Required</div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Cep</label>
+        <input [mask]="'00-000-000'" type="text" class="form-control"
+        [ngClass]="{'is-invalid' : form.get('cep').errors && form.get('cep').touched }"
+        formControlName="cep">
+        <div *ngIf="form.get('cep').hasError('required')" class="invalid-feedback">Required</div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Classificação</label>
+        <div class="input-group mb-3">
+          <select class="custom-select"
+          [ngClass]="{'is-invalid' : form.get('classification').errors
+                                      && form.get('classification').touched }"
+          formControlName="classification" id="classification">
+            <option selected="true" value="ativo">Ativo</option>
+            <option value="inativo">Inativo</option>
+            <option value="preferencial">Preferencial</option>
+          </select>
+          <div *ngIf="form.get('classification').hasError('required')" class="invalid-feedback">Required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>Telefone</label>
+        <td *ngFor="let p of client.telephones">
+          <!--<div class="input-group col-md-12 mb-2">
+            <input type="text" class="form-control" value={{p.number}}
+              [ngClass]="{'is-invalid' : form.get('telephone').errors && form.get('telephone').touched }"
+                formControlName="telephone">{{phones.number}}
+            <div class="input-group-prepend ml-1">
+              <span class="input-group-text btn btn-success" id="">Add</span>
+            </div>
+          </div>-->
+        </td>
+        <div *ngIf="form.get('telephone').hasError('required')" class="invalid-feedback">Required</div>
+    </div>
+  </div>
+</div>
+
+<div class="card-footer">
+  <div class="d-flex">
+    <button class="btn btn-outline-secondary mr-auto border">
+      Cancel
+    </button>
+    <button class="btn btn-success" (click)="saveAlter()">
+      Save
+    </button>
+  </div>
+</div>
+  </form>
+
+</div>

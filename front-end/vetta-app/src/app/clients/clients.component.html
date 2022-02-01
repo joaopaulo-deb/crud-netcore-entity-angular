@@ -1,0 +1,63 @@
+<h2>Clients</h2>
+<hr>
+<div class ="card rounded shadow-sm p-3">
+  <div class="d-flex">
+    <div class="flex-fill pr-3">
+      <div class="form-group mb-2">
+        <input
+          type="text"
+          class="form-control mr-2"
+          placeholder="search"
+          [(ngModel)]="filter">
+      </div>
+    </div>
+    <div>
+      <a class="d-flex btn btn-outline-primary" routerLink="/clientnew"> New</a>
+    </div>
+
+  </div>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>#</th>
+        <th>Name / Social Name</th>
+        <th>CPF / CNPJ</th>
+        <th>CEP</th>
+        <th>Email</th>
+        <th>Classification</th>
+        <th>Telephones</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="clients && clients.length">
+      <tr *ngFor="let client of clientsFiltered">
+        <td>{{client.id}}</td>
+        <td>{{client.fantasyName}}</td>
+        <td>{{client.cnpj}}</td>
+        <td>{{client.cep}}</td>
+        <td>{{client.email}}</td>
+        <td>{{client.classification}}</td>
+        <td><p *ngFor="let fone of client.telephones">{{fone.number}}</p></td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm mr-2" (click)="editClient(client.id)">Edit</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="openModal(template, client.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr *ngIf="!clients.length">
+        <td colspan="8" class="text-center">
+          <h4>Not found!</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Do you want to confirm?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>
+
