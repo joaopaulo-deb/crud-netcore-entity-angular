@@ -19,3 +19,5 @@ No caminho ..../back-end/API execute -> dotnet run
 No caminho ..../front-end/vetta-app/ execute -> npm start
 
 Acesse em http://localhost:4200/
+
+![image](https://user-images.githubusercontent.com/18562298/151896750-08540ec0-6174-435a-b1bc-b471620d604e.png)
